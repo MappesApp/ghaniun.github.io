@@ -791,8 +791,15 @@ function filtCli(val){
   if(!val||val.length<1){dd.style.display='none';return;}
   var m=CLIENTES.filter(function(c){return c.nom.toLowerCase().indexOf(val.toLowerCase())>=0;});
   if(!m.length){dd.style.display='none';return;}
-  dd.innerHTML=m.map(function(c){return '<div style="padding:9px 13px;cursor:pointer;font-size:13px;color:var(--dark);border-bottom:1px solid rgba(26,18,8,.06);" onmousedown="selCli(this,\''+c.nom.replace(/'/g,"\\'")+'\')">'+c.nom+'</div>';}).join('');
+  dd.innerHTML=m.map(function(c){
+    return '<div style="padding:9px 13px;cursor:pointer;font-size:13px;color:var(--dark);border-bottom:1px solid rgba(26,18,8,.06);" onclick="selCliByName(this)">'+c.nom+'</div>';
+  }).join('');
   dd.style.display='block';
+}
+
+function selCliByName(el){
+  var nom=el.textContent;
+  selCli(el,nom);
 }
 
 function selCli(el,nom){
