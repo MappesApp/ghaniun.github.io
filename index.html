@@ -617,12 +617,13 @@ function renderPedNum(){
 function addItem(){
   IC++;var id='it-'+IC;var d=document.createElement('div');d.className='irow';d.id=id;
   d.style.gridTemplateColumns='2fr 1fr 1fr 1fr 1fr auto';
-  d.innerHTML='<div class="fg" style="margin:0"><label>Producto</label><select onchange="calcTotal()"><option value="">Seleccionar...</option><option value="CLASICO">Alfajor Clásico Negro x 75g</option><option value="BLANCO">Alfajor Clásico Blanco x 75g</option><option value="NUEZ">Alfajor Blanco c/Nuez x 75g</option></select></div>'
-    +'<div class="fg" style="margin:0"><label>Presentación</label><select class="bulto-sel" onchange="calcTotal()"><option value="1">Unidades</option><option value="6">Caja x 6</option><option value="12">Caja x 12</option></select></div>'
-    +'<div class="fg" style="margin:0"><label>Cantidad</label><input type="number" placeholder="0" min="0" oninput="calcTotal()"/></div>'
-    +'<div class="fg" style="margin:0"><label>Precio por unidad AR$</label><input type="number" placeholder="0" min="0" oninput="calcTotal()"/></div>'
-    +'<div class="fg" style="margin:0"><label>Subtotal</label><input type="text" readonly style="background:#edeae3;font-weight:700;" value="$0"/></div>'
-    +'<button class="btn-rm" onclick="rmItem(''+id+'')">×</button>';
+  var prodSel=document.createElement('div');prodSel.className='fg';prodSel.style.margin='0';prodSel.innerHTML='<label>Producto</label><select onchange="calcTotal()"><option value="">Seleccionar...</option><option value="CLASICO">Alfajor Clásico Negro x 75g</option><option value="BLANCO">Alfajor Clásico Blanco x 75g</option><option value="NUEZ">Alfajor Blanco c/Nuez x 75g</option></select>';
+  var presSel=document.createElement('div');presSel.className='fg';presSel.style.margin='0';presSel.innerHTML='<label>Presentación</label><select class="bulto-sel" onchange="calcTotal()"><option value="1">Unidades</option><option value="6">Caja x 6</option><option value="12">Caja x 12</option></select>';
+  var cantDiv=document.createElement('div');cantDiv.className='fg';cantDiv.style.margin='0';cantDiv.innerHTML='<label>Cantidad</label><input type="number" placeholder="0" min="0" oninput="calcTotal()"/>';
+  var precDiv=document.createElement('div');precDiv.className='fg';precDiv.style.margin='0';precDiv.innerHTML='<label>Precio por unidad AR$</label><input type="number" placeholder="0" min="0" oninput="calcTotal()"/>';
+  var subDiv=document.createElement('div');subDiv.className='fg';subDiv.style.margin='0';subDiv.innerHTML='<label>Subtotal</label><input type="text" readonly style="background:#edeae3;font-weight:700;" value="$0"/>';
+  var rmBtn=document.createElement('button');rmBtn.className='btn-rm';rmBtn.textContent='×';rmBtn.onclick=function(){rmItem(id);};
+  d.appendChild(prodSel);d.appendChild(presSel);d.appendChild(cantDiv);d.appendChild(precDiv);d.appendChild(subDiv);d.appendChild(rmBtn);
   document.getElementById('items-wrap').appendChild(d);
 }
 
@@ -926,11 +927,12 @@ function hideOpForm(){document.getElementById('op-form').style.display='none';}
 
 function addOpItem(){
   OIC++;var id='opi-'+OIC;var d=document.createElement('div');d.className='irow';d.id=id;
-  d.innerHTML='<div class="fg" style="margin:0"><label>Producto</label><select onchange="calcOpTotal()"><option value="">Seleccionar...</option><option value="CLASICO">Alfajor Clásico Negro</option><option value="BLANCO">Alfajor Clásico Blanco</option><option value="NUEZ">Alfajor Blanco c/Nuez</option></select></div>'
-    +'<div class="fg" style="margin:0"><label>Unidades</label><input type="number" placeholder="0" min="0" oninput="calcOpTotal()"/></div>'
-    +'<div class="fg" style="margin:0"><label>Precio/Unidad</label><input type="number" placeholder="0" min="0" oninput="calcOpTotal()"/></div>'
-    +'<div class="fg" style="margin:0"><label>Subtotal</label><input type="text" readonly style="background:#edeae3;font-weight:700;" value="$0"/></div>'
-    +'<button class="btn-rm" onclick="rmOpItem(''+id+'')">×</button>';
+  var prodSel=document.createElement('div');prodSel.className='fg';prodSel.style.margin='0';prodSel.innerHTML='<label>Producto</label><select onchange="calcOpTotal()"><option value="">Seleccionar...</option><option value="CLASICO">Alfajor Clásico Negro</option><option value="BLANCO">Alfajor Clásico Blanco</option><option value="NUEZ">Alfajor Blanco c/Nuez</option></select>';
+  var cantDiv=document.createElement('div');cantDiv.className='fg';cantDiv.style.margin='0';cantDiv.innerHTML='<label>Unidades</label><input type="number" placeholder="0" min="0" oninput="calcOpTotal()"/>';
+  var precDiv=document.createElement('div');precDiv.className='fg';precDiv.style.margin='0';precDiv.innerHTML='<label>Precio/Unidad</label><input type="number" placeholder="0" min="0" oninput="calcOpTotal()"/>';
+  var subDiv=document.createElement('div');subDiv.className='fg';subDiv.style.margin='0';subDiv.innerHTML='<label>Subtotal</label><input type="text" readonly style="background:#edeae3;font-weight:700;" value="$0"/>';
+  var rmBtn=document.createElement('button');rmBtn.className='btn-rm';rmBtn.textContent='×';rmBtn.onclick=function(){rmOpItem(id);};
+  d.appendChild(prodSel);d.appendChild(cantDiv);d.appendChild(precDiv);d.appendChild(subDiv);d.appendChild(rmBtn);
   document.getElementById('op-items-wrap').appendChild(d);
 }
 
